@@ -72,10 +72,10 @@ To run both backend and frontend:
 
 ## Core Components and Files
 
--   `src/App.jsx`: The main application component. It sets up the basic page structure, manages the modal state, and includes the `SimpleVoiceAssistant` component.
--   `src/App.css`: Provides the main styling for the application layout and theme.
--   `src/components/SimpleVoiceAssistant.jsx`: Implements the core voice assistant UI.
--   `src/components/SimpleVoiceAssistant.css`: Styles the voice assistant component.
+-   `App.jsx`: The main application component. It sets up the basic page structure, manages the modal state, and includes the `SimpleVoiceAssistant` component.
+-   `App.css`: Provides the main styling for the application layout and theme.
+-   `SimpleVoiceAssistant.jsx`: Implements the core voice assistant UI.
+-   `SimpleVoiceAssistant.css`: Styles the voice assistant component.
 -   `package.json`: Lists the frontend dependencies (React, LiveKit components, Vite) and scripts (`dev`, `build`).
 -   `api.py`: Defines the `AssistantFnc` class which handles custom function calls or interactions triggered by the AI model. (Located at the project root)
 -   `prompts.py`: Contains the predefined prompts used to instruct the AI agent. (Located at the project root)
