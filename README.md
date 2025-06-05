@@ -11,37 +11,29 @@ This project is a LiveKit-based AI Car Call Centre application, demonstrating ho
 
 ## Project Structure
 
-The project is organized into two main directories:
-
-- `backend/`: Contains the Python code for the LiveKit agent.
-- `frontend/`: Contains the React application for the user interface.
+The project root contains the following main files and directories:
 
 ```
-LiveKit-AI-Car-Call-Centre/
-├── backend/
-│   ├── agent.py
-│   ├── api.py
-│   ├── prompts.py
-│   ├── requirements.txt  # (Needs to be created/confirmed)
-│   └── ...
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── LiveKitModal.jsx
-│   │   │   ├── SimpleVoiceAssistant.css
-│   │   │   └── SimpleVoiceAssistant.jsx
-│   │   ├── App.css
-│   │   ├── App.jsx
-│   │   ├── index.css
-│   │   └── main.jsx
-│   ├── .gitignore
-│   ├── index.html
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── README.md
-│   ├── sample.env
-│   └── vite.config.js
-└── README.md (this file)
+./
+├── src/
+│   ├── components/
+│   │   ├── LiveKitModal.jsx
+│   │   ├── SimpleVoiceAssistant.css
+│   │   └── SimpleVoiceAssistant.jsx
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── README.md (this file)
+├── sample.env
+├── vite.config.js
+├── api.py
+├── prompts.py
+└── requirements.txt  # (Needs to be created/confirmed)
 ```
 
 ## Setup
@@ -51,22 +43,29 @@ LiveKit-AI-Car-Call-Centre/
 - Node.js and npm installed.
 - Python 3.8+ and pip installed.
 - LiveKit instance running and accessible.
-- Environment variables for LiveKit URL, API Key, and API Secret configured (e.g., in a `.env` file in the backend directory).
+- Environment variables for LiveKit URL, API Key, and API Secret configured (e.g., in a `.env` file at the project root).
 - OpenAI API key configured (if using the OpenAI plugin).
 
-### Backend Setup
+### Frontend Setup
 
-1.  Navigate to the `backend` directory:
+1.  Install npm dependencies from the project root:
     ```bash
-    cd LiveKit-AI-Car-Call-Centre/backend
+    npm install
     ```
-2.  Install Python dependencies (assuming a `requirements.txt` exists or you create one):
+2.  Create a `.env` file at the project root with your LiveKit URL (if needed, depending on how the frontend connects):
+    ```env
+    VITE_LIVEKIT_URL=ws://localhost:7880
+    ```
+
+### Backend Setup (Optional for running frontend only)
+
+1.  Install Python dependencies from the project root (assuming a `requirements.txt` exists or you create one):
     ```bash
     pip install -r requirements.txt
     # or install individually if no requirements.txt
     # pip install livekit-agents livekit-plugins-openai livekit-plugins-silero python-dotenv
     ```
-3.  Create a `.env` file in the `backend` directory with your LiveKit and OpenAI credentials:
+2.  Create a `.env` file at the project root with your LiveKit and OpenAI credentials:
     ```env
     LIVEKIT_URL=ws://localhost:7880
     LIVEKIT_API_KEY=YOUR_API_KEY
@@ -74,50 +73,38 @@ LiveKit-AI-Car-Call-Centre/
     OPENAI_API_KEY=YOUR_OPENAI_API_KEY
     ```
 
-### Frontend Setup
-
-1.  Navigate to the `frontend` directory:
-    ```bash
-    cd LiveKit-AI-Car-Call-Centre/frontend
-    ```
-2.  Install npm dependencies:
-    ```bash
-    npm install
-    ```
-3.  Create a `.env` file in the `frontend` directory with your LiveKit URL (if needed, depending on how the frontend connects):
-    ```env
-    VITE_LIVEKIT_URL=ws://localhost:7880
-    ```
-
 ## Running the Application
 
-1.  Start the backend agent:
+To run only the frontend:
+
+1.  Start the frontend development server from the project root:
     ```bash
-    cd LiveKit-AI-Car-Call-Centre/backend
-    python agent.py
-    ```
-2.  Start the frontend development server:
-    ```bash
-    cd LiveKit-AI-Car-Call-Centre/frontend
     npm run dev
     ```
-3.  Open your web browser and go to the address provided by the Vite development server (usually `http://localhost:5173`).
+2.  Open your web browser and go to the address provided by the Vite development server (usually `http://localhost:5173`).
+
+To run both backend and frontend:
+
+1.  Start the backend agent from the project root (requires `agent.py`, which seems to be missing):
+    ```bash
+    python agent.py # Note: agent.py was noted as deleted in the last interaction.
+    ```
+2.  In a new terminal, start the frontend development server from the project root:
+    ```bash
+    npm run dev
+    ```
+3.  Open your web browser and go to the address provided by the Vite development server.
 
 ## Core Components and Files
 
-### Backend (`backend/`)
-
--   `agent.py`: Contains the main LiveKit Agent implementation. It defines the `entrypoint` function which handles incoming LiveKit room connections, sets up the `Agent` with the `RealtimeModel` from `livekit-plugins-openai`, and starts the agent.
--   `api.py`: Defines the `AssistantFnc` class (as per our previous work) which would handle custom function calls or interactions triggered by the AI model.
--   `prompts.py`: Contains the predefined prompts used to instruct the AI agent, such as the `WELCOME_MESSAGE` and `INSTRUCTIONS`.
-
-### Frontend (`frontend/src/`)
-
--   `App.jsx`: The main application component. It sets up the basic page structure (header, main content, modal), manages the state for showing the LiveKit modal, and includes the `SimpleVoiceAssistant` component within the modal.
--   `App.css`: Provides the main styling for the application layout, including the techy dark theme, gradients, hero section, and modal.
--   `components/SimpleVoiceAssistant.jsx`: Implements the core voice assistant UI using `@livekit/components-react`. It displays the audio visualizer, control bar, and the conversation history. It also handles fetching transcriptions from the agent and the local participant.
--   `components/SimpleVoiceAssistant.css`: Styles the voice assistant component, including the message appearance, visualizer container, and conversation history.
+-   `src/App.jsx`: The main application component. It sets up the basic page structure, manages the modal state, and includes the `SimpleVoiceAssistant` component.
+-   `src/App.css`: Provides the main styling for the application layout and theme.
+-   `src/components/SimpleVoiceAssistant.jsx`: Implements the core voice assistant UI.
+-   `src/components/SimpleVoiceAssistant.css`: Styles the voice assistant component.
 -   `package.json`: Lists the frontend dependencies (React, LiveKit components, Vite) and scripts (`dev`, `build`).
+-   `api.py`: Defines the `AssistantFnc` class which handles custom function calls or interactions triggered by the AI model. (Located at the project root)
+-   `prompts.py`: Contains the predefined prompts used to instruct the AI agent. (Located at the project root)
+-   `agent.py`: Contains the main LiveKit Agent implementation. **(Note: This file was noted as deleted in the last interaction and is required to run the backend.)**
 
 ## Styling and Design
 
