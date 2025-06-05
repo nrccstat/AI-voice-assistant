@@ -9,32 +9,7 @@ This project is a LiveKit-based AI Car Call Centre application, demonstrating ho
 - Modern, techy user interface with dynamic styling.
 - Integration with LiveKit components for easy voice assistant implementation.
 
-## Project Structure
 
-The project root contains the following main files and directories:
-
-```
-./
-├── src/
-│   ├── components/
-│   │   ├── LiveKitModal.jsx
-│   │   ├── SimpleVoiceAssistant.css
-│   │   └── SimpleVoiceAssistant.jsx
-│   ├── App.css
-│   ├── App.jsx
-│   ├── index.css
-│   └── main.jsx
-├── .gitignore
-├── index.html
-├── package.json
-├── package-lock.json
-├── README.md (this file)
-├── sample.env
-├── vite.config.js
-├── api.py
-├── prompts.py
-└── requirements.txt  # (Needs to be created/confirmed)
-```
 
 ## Setup
 
